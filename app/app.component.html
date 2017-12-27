@@ -1,0 +1,50 @@
+<div class="container">
+	<h2>Model Driven Template</h2>
+	<form class="form-horizontal" [formGroup]="userForm" (ngSubmit)="onSubmit()">  
+		<div class="form-group">
+			<label class="control-label col-md-2">Name:</label>
+			<div class="col-md-6">
+				<input type="text" #refName class="form-control" formControlName="name" placeholder="Enter a Name">
+				<div *ngIf="userForm.controls['name'].hasError('required')" class="alert alert-danger">
+					Please Enter Your Name
+				</div>
+				<div *ngIf="userForm.controls['name'].hasError('minlength')" class="alert alert-danger">
+					Please Enter minimum 4 letters
+				</div>
+				<div *ngIf="userForm.controls['name'].hasError('maxlength')" class="alert alert-danger">
+					Not exceed maximum 10 letters
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2">Email:</label>
+			<div class="col-md-6">
+				<input type="email" class="form-control" formControlName="email" placeholder="Enter a Email">
+			</div>
+		</div>
+		<div formGroupName="address">
+			<div class="form-group">
+				<label class="control-label col-md-2">Street:</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" formControlName="street" placeholder="Enter a street">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-2">City:</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" formControlName="city" placeholder="Enter a city">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-2">Postal Code:</label>
+				<div class="col-md-6">
+					<input type="text" class="form-control" formControlName="postalCode" placeholder="Enter a Postal code">
+					<div *ngIf="userForm.controls['address'].controls['postalCode'].hasError('pattern')" class="alert alert-danger">
+					Not exceed 5 numbers
+				</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
